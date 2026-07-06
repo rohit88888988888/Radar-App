@@ -1,4 +1,5 @@
 """
+app = Flask(__name__)
 test_order_flow_dashboard.py — live diagnostic view of delta_order_flow.py.
 Confirms real trade data is flowing before this goes anywhere near main.py
 or mission_control.html. Every number on this page is either real or an
