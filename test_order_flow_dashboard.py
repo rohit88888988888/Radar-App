@@ -25,8 +25,10 @@ SYMBOLS = ["BTCUSDT"]  # bare asset — delta_order_flow resolves to BTCUSDT/BTC
 # gunicorn and /flow would stay null forever. Running it here means it starts
 # exactly once, the same way, whether launched via `python test_order_flow_
 # dashboard.py` or `gunicorn test_order_flow_dashboard:app`.
-delta_order_flow.start(SYMBOLS)
 
+if __name__ == '__main__':
+    delta_order_flow.start(SYMBOLS)
+    app.run(host='0.0.0.0', port=8080)
 
 @app.route("/flow")
 def flow():
