@@ -13,6 +13,8 @@ import json
 import os
 import delta_order_flow
 from flask import Flask, jsonify
+import logging
+logging.basicConfig(level=logging.INFO)
 
 app = Flask(__name__)
 
