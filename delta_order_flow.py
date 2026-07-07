@@ -71,7 +71,7 @@ log = logging.getLogger("apex_webhook")  # same logger name as main.py, so
 # "global" -> www.delta.exchange account (BTC perp symbol: BTCUSDT)
 # "india"  -> india.delta.exchange account (BTC perp symbol: BTCUSD)
 # Confirmed against Delta's docs and official python-rest-client repo.
-REGION = "global"  # change to "india" if your account is on india.delta.exchange
+REGION = "india"  # change to "india" if your account is on india.delta.exchange
 
 WS_URLS = {
     "global": "wss://socket.delta.exchange",
