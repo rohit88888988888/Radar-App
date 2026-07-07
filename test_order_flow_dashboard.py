@@ -13,8 +13,6 @@ import json
 import os
 import delta_order_flow
 from flask import Flask, jsonify
-import logging
-logging.basicConfig(level=logging.INFO)
 
 app = Flask(__name__)
 
@@ -221,4 +219,4 @@ if __name__ == "__main__":
     # fallback for when PORT isn't set (e.g. running this on your own machine).
     port = int(os.environ.get("PORT", 8081))
     app.run(host="0.0.0.0", port=port)
-  
+    
