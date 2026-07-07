@@ -139,7 +139,7 @@ def _on_message(ws, message):
             _raw_message_logged = True
 
         msg_type = data.get("type")
-        if msg_type not in ("trades", "all_trades"):  # accept either naming
+        if msg_type not in ("trades", "all_trades", "v2/trades"):
             return
 
         # Some exchanges send one trade per message, some send a batch list —
@@ -170,7 +170,8 @@ def _on_open(ws, symbols):
     _ws_connected = True
     log.info(f"✅ order_flow: WebSocket connected (region={REGION}) — "
              f"subscribing to trades for {symbols}")
-    payload = {"type": "subscribe", "payload": {"channels": [{"name": "trades", "symbols": symbols}]}}
+    payload = {"type": "subscribe", "payload": {"channels": [{"name": "v2/trades", "symbols": symbols}]}}
+    
     try:
         ws.send(json.dumps(payload))
     except Exception as e:
