@@ -18,7 +18,7 @@ logging.basicConfig(level=logging.INFO)
 
 app = Flask(__name__)
 
-SYMBOLS = ["BTCUSD"]  # bare asset — delta_order_flow resolves to BTCUSDT/BTCUSD
+SYMBOLS = ["BTCUSDT"]  # bare asset — delta_order_flow resolves to BTCUSDT/BTCUSD
                     # based on delta_order_flow.REGION. Add more once confirmed working.
 
 # Started at MODULE LEVEL (not inside `if __name__ == "__main__"`) on purpose —
