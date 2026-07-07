@@ -71,7 +71,7 @@ log = logging.getLogger("apex_webhook")  # same logger name as main.py, so
 # "global" -> www.delta.exchange account (BTC perp symbol: BTCUSDT)
 # "india"  -> india.delta.exchange account (BTC perp symbol: BTCUSD)
 # Confirmed against Delta's docs and official python-rest-client repo.
-REGION = "global"  # change to "india" if your account is on india.delta.exchange
+REGION = "india"  # change to "india" if your account is on india.delta.exchange
 
 WS_URLS = {
     "global": "wss://socket.delta.exchange",
@@ -139,9 +139,9 @@ def _on_message(ws, message):
             _raw_message_logged = True
 
         msg_type = data.get("type")
-        if msg_type not in ("trades", "all_trades", "v2/trades"):
+        if msg_type not in ("trades", "all_trades"):
             return
-
+6
         # Some exchanges send one trade per message, some send a batch list —
         # handle both shapes defensively.
         trades = data.get("trades") if isinstance(data.get("trades"), list) else [data]
@@ -170,9 +170,10 @@ def _on_open(ws, symbols):
     _ws_connected = True
     log.info(f"✅ order_flow: WebSocket connected (region={REGION}) — "
              f"subscribing to trades for {symbols}")
-    payload = {"type": "subscribe", "payload": {"channels": [{"name": "v2/trades", "symbols": symbols}]}}
     
-    try:
+    payload = {"type": "subscribe", "payload": {"channels": [{"name": "trades", "symbols": symbols}]}}
+
+    try
         ws.send(json.dumps(payload))
     except Exception as e:
         # If the socket drops in the split-second right after connecting,
